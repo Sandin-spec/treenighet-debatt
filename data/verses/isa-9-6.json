@@ -1,0 +1,34 @@
+{
+  "id": "isa-9-6",
+  "ref": "Jes 9:6",
+  "short": "En titel görs till ontologisk identitet, trots att titlar ofta fungerar representativt.",
+  "tags": [
+    "GT",
+    "titel",
+    "Väldig Gud"
+  ],
+  "expanded": {
+    "logic": [
+      "Versen staplar hederstitlar om barnet: makt, fred, kungligt språk.",
+      "Treenighetsläsning gör “Väldig Gud” till en teknisk identitetssats om väsen.",
+      "Men titlar kan uttrycka funktion, mandat och Guds närvaro genom en agent utan att definiera metafysik.",
+      "Läs versen i sitt sammanhang. Den säger något konkret om Fadern, Sonen eller Anden, men formulerar inte en treenig gudom."
+    ],
+    "why": [
+      "Texten ger titel och uppdrag. Ontologi kräver fler premisser än vad versen uttrycker.",
+      "Versen används ofta i treenighetsdebatten. Här hjälper den oss att hålla oss till det som faktiskt står i texten, inte senare tolkningar.",
+      "Den här versen hjälper oss att bygga en helhetsbild där bibeltexter tolkas med bibeltexter (jämför gärna parallellställen)."
+    ],
+    "notes": [
+      "Fråga: Var säger texten att titeln måste tolkas som väsen-identitet och inte som representativ kungatitel?",
+      "Tumregel: om tolkningen kräver ord som inte finns i texten (t.ex. ”tre personer i ett väsen”), kontrollera om sammanhanget verkligen stödjer det.",
+      "Om du vill göra sidan ännu tydligare kan du länka till ett par parallellställen i samma tema (monoteism, Sonens underordning, Andens funktion).",
+      "För treenighetsfrågor är det extra viktigt att skilja på: vad texten säger, och vad en senare teologisk modell vill att texten ska säga."
+    ]
+  },
+  "relatedIds": [
+    "john-1-1",
+    "col-2-9",
+    "heb-1-3"
+  ]
+}
