@@ -7,6 +7,10 @@
     "Johannes",
     "textvariant"
   ],
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Papyrus_66_%28GA%29.jpg/440px-Papyrus_66_%28GA%29.jpg",
+    "alt": "Papyrus Bodmer II (P66), första sidan med titeln Euaggélion katà Iōánēn"
+  },
   "expanded": {
     "logic": [
       "Versen har olika läsarter (\"enfödde Gud\" / \"enfödde Son\") beroende på texttradition.",
