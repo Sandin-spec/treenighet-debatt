@@ -1,0 +1,28 @@
+{
+  "id": "rom-56-1",
+  "ref": "Rom 56:1",
+  "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+  "tags": [
+    "Komplettering",
+    "debatt"
+  ],
+  "expanded": {
+    "logic": [
+      "Texten: Rom 56:1.",
+      "Används ofta för att stödja hög kristologi eller treenighetslära.",
+      "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi.",
+      "Läs versen i sitt sammanhang. Den säger något konkret om Fadern, Sonen eller Anden, men formulerar inte en treenig gudom."
+    ],
+    "why": [
+      "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+      "Det ramverket uttrycks inte direkt i versens ordalydelse.",
+      "Versen används ofta i treenighetsdebatten. Här hjälper den oss att hålla oss till det som faktiskt står i texten, inte senare tolkningar."
+    ],
+    "notes": [
+      "Debattfråga: Var i texten definieras ontologin explicit?",
+      "Tumregel: om tolkningen kräver ord som inte finns i texten (t.ex. ”tre personer i ett väsen”), kontrollera om sammanhanget verkligen stödjer det.",
+      "Historiskt formulerades treenighetsläran stegvis (bl.a. 325 och 381). Det gör att senare läsningar ibland lägger mer i versen än den ursprungligen säger.",
+      "För treenighetsfrågor är det extra viktigt att skilja på: vad texten säger, och vad en senare teologisk modell vill att texten ska säga."
+    ]
+  }
+}

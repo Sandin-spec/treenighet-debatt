@@ -1,0 +1,34 @@
+{
+  "id": "rom-9-5",
+  "ref": "Rom 9:5",
+  "short": "En omstridd grammatikfråga måste låsas till en lösning för att bära ontologin.",
+  "tags": [
+    "Paulus",
+    "grammatik",
+    "omstridd"
+  ],
+  "expanded": {
+    "logic": [
+      "Versens tolkning beror på interpunktion och grammatisk analys.",
+      "Treenighetsläsning behöver att formuleringen blir en direkt gudstitel på Kristus.",
+      "Men när texten är omstridd blir det tydligt att ontologin inte ligger självklart i ordalydelsen utan i beslutet om hur den ska läsas.",
+      "Läs versen i sitt sammanhang. Den säger något konkret om Fadern, Sonen eller Anden, men formulerar inte en treenig gudom."
+    ],
+    "why": [
+      "Om läran kräver att en omstridd vers måste betyda exakt en sak, visar det hur mycket som hänger på extern tolkning.",
+      "Versen används ofta i treenighetsdebatten. Här hjälper den oss att hålla oss till det som faktiskt står i texten, inte senare tolkningar.",
+      "Den här versen hjälper oss att bygga en helhetsbild där bibeltexter tolkas med bibeltexter (jämför gärna parallellställen)."
+    ],
+    "notes": [
+      "Fråga: Varför ska en omtvistad interpunktion avgöra en ontologisk slutsats?",
+      "Tumregel: om tolkningen kräver ord som inte finns i texten (t.ex. ”tre personer i ett väsen”), kontrollera om sammanhanget verkligen stödjer det.",
+      "Om du vill göra sidan ännu tydligare kan du länka till ett par parallellställen i samma tema (monoteism, Sonens underordning, Andens funktion).",
+      "För treenighetsfrågor är det extra viktigt att skilja på: vad texten säger, och vad en senare teologisk modell vill att texten ska säga."
+    ]
+  },
+  "relatedIds": [
+    "titus-2-13",
+    "john-20-28",
+    "john-1-1"
+  ]
+}
