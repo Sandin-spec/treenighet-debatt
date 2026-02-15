@@ -1,0 +1,3407 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Icke-trinitarier: Klickbara verser</title>
+  <style>
+    :root{
+      --bg:#f6f8ff;
+      --panel:#ffffff;
+      --panel2:#ffffff;
+      --text:#0b1220;
+      --muted:#4b5b7a;
+      --accent:#245cff;
+      --accent2:#0f8a3c;
+      --danger:#c81e1e;
+      --border:rgba(15,23,42,.12);
+      --shadow: 0 10px 24px rgba(15,23,42,.10);
+      --radius: 14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+            background: radial-gradient(1200px 600px at 20% -10%, rgba(36,92,255,.10), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(15,138,60,.08), transparent 60%),
+                  var(--bg);color:var(--text);
+      line-height:1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      padding:28px 18px 10px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .title{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:8px 0 0;
+      color:var(--muted);
+      max-width: 75ch;
+    }
+    .pillbar{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .pill{
+      padding:7px 10px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding: 12px 18px 60px;
+      display:grid;
+      grid-template-columns: 380px 1fr;
+      gap:16px;
+    }
+    @media (max-width: 980px){
+      main{grid-template-columns: 1fr}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .cardheader{
+      padding:14px 14px 12px;
+      border-bottom:1px solid var(--border);
+      background: rgba(15,23,42,.04);
+    }
+    .cardheader h2{
+      margin:0;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .cardbody{padding:14px}
+    .searchrow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:14px;
+      border-bottom:1px solid var(--border);
+      background: rgba(15,23,42,.03);
+    }
+    .searchrow input{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background: rgba(15,23,42,.04);
+      color: var(--text);
+      outline:none;
+    }
+    .searchrow input::placeholder{color: rgba(75,91,122,.55)}
+    .list{
+      max-height: 64vh;
+      overflow:auto;
+      padding: 10px;
+    }
+    @media (max-width: 980px){
+      .list{max-height: none}
+    }
+    .item{
+      display:block;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid transparent;
+      background: rgba(15,23,42,.04);
+      margin:8px 0;
+      cursor:pointer;
+      transition: .12s ease;
+    }
+    .item:hover{
+      border-color: rgba(122,162,255,.35);
+      background: rgba(36,92,255,.06);
+      transform: translateY(-1px);
+    }
+    .item.active{
+      border-color: rgba(155,255,176,.55);
+      background: rgba(15,138,60,.06);
+    }
+    .ref{
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent2);
+    }
+    .onesentence{
+      margin-top:6px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .tags{
+      margin-top:8px;
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+    }
+    .tag{
+      font-size:12px;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+
+    .detail{
+      padding:18px;
+    }
+    .detail h2{
+      margin:0 0 4px;
+      font-size: 22px;
+    }
+    .detail .kicker{
+      color: var(--muted);
+      margin:0 0 16px;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+    .block{
+      padding:14px;
+      border:1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(15,23,42,.04);
+      margin: 12px 0;
+    }
+    .block h3{
+      margin:0 0 8px;
+      font-size: 14px;
+      letter-spacing:.2px;
+      color: var(--accent);
+    }
+    .block p{
+      margin:0 0 10px;
+      color: var(--text);
+    }
+    .block p:last-child{margin-bottom:0}
+    .logic{
+      border-left: 3px solid rgba(122,162,255,.7);
+    }
+    .why{
+      border-left: 3px solid rgba(155,255,176,.7);
+    }
+    .notes{
+      border-left: 3px solid rgba(255,122,122,.6);
+    }
+    .footerhint{
+      margin-top:12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .btnrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    button{
+      padding:10px 12px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      cursor:pointer;
+    }
+    button:hover{background: rgba(122,162,255,.12); border-color: rgba(122,162,255,.35)}
+    .small{font-size:12px; color:var(--muted)}
+    .muted{color:var(--muted)}
+    .hr{
+      height:1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+    .copyok{
+      color: var(--accent2);
+      font-size: 12px;
+      margin-left: 6px;
+    }
+  </style>
+
+<style>
+  body.dark {
+    --bg:#0f172a;
+    --panel:#111827;
+    --panel2:#0b1220;
+    --text:#e9eefc;
+    --muted:#9aa6c7;
+    --accent:#7aa2ff;
+    --accent2:#9bffb0;
+    --danger:#ff8b8b;
+    --border:rgba(255,255,255,.08);
+  }
+  .theme-toggle{
+    position:fixed;
+    top:16px;
+    right:16px;
+    z-index:9999;
+    padding:8px 14px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:var(--text);
+    cursor:pointer;
+    font-size:14px;
+  }
+</style>
+
+</head>
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+
+<header>
+  <div class="title">
+    <div>
+      <h1>Klickbara verser: debatt-korta + fördjupning</h1>
+      <p class="subtitle">
+        Klicka på en vers i listan. Du får en mer utförlig förklaring med samma logiska kärna:
+        trinitarisk läsning kräver ett ontologiskt ramverk som inte uttrycks i själva versen.
+      </p>
+      <div class="pillbar">
+        <span class="pill">En fil</span>
+        <span class="pill">Sökfilter</span>
+        <span class="pill">Delningsbara länkar (hash)</span>
+        <span class="pill">Konsekvent logisk punkt</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="card" aria-label="Verslista">
+    <div class="searchrow">
+      <input id="q" type="search" placeholder="Sök: t.ex. 'Joh 10:30', 'ensam', 'förstfödd'..." />
+    </div>
+    <div class="list" id="list"></div>
+  </section>
+
+  <section class="card" aria-label="Detaljvy">
+    <div class="cardheader">
+      <h2 id="detailTitle">Välj en vers</h2>
+    </div>
+    <div class="detail" id="detail"></div>
+  </section>
+</main>
+
+
+
+
+
+
+<script>
+  const VERSES = [
+  {
+    "id": "gen-1-26",
+    "ref": "1 Mos 1:26",
+    "short": "Pluralformen blir tre personer först när man lägger in ett ontologiskt schema som versen inte anger.",
+    "tags": [
+      "GT",
+      "plural",
+      "låt oss"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten har plural: “Låt oss göra människan”. Plural kan vara majestätiskt språk eller himmelskt råd.",
+        "För att få treenigheten ur versen måste man anta: plural syftar på interna gudomliga personer i samma väsen.",
+        "Men versen definierar varken antal, relation, eller väsen-kategori. Den ger bara en pluralform."
+      ],
+      "why": [
+        "Det är ett metodproblem: man går från grammatik till metafysik utan att texten själv gör det steget."
+      ],
+      "notes": [
+        "Fråga: Var i versen står att pluralen är en intern gudomlig dialog och inte språklig stil eller råd?"
+      ]
+    },
+    "relatedIds": [
+      "deut-6-4",
+      "john-10-30",
+      "matt-28-19"
+    ]
+  },
+  {
+    "id": "deut-6-4",
+    "ref": "5 Mos 6:4",
+    "short": "“Herren är en” blir “en sammansatt enhet” via omdefinition, inte via ordalydelse.",
+    "tags": [
+      "GT",
+      "Shema",
+      "enhet"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen säger rakt: Herren är en.",
+        "Treenighetsläsning behöver att “en” betyder en förenad enhet som rymmer flera personer.",
+        "Men texten säger inte “en i tre personer”. Den ger en enhetssats utan ontologisk kommentar."
+      ],
+      "why": [
+        "När ett nyckelord måste byta grundbetydelse för att modellen ska passa, då är modellen styrande, inte texten."
+      ],
+      "notes": [
+        "Fråga: Var definieras “en” som flerperson-enhet i själva Shema?"
+      ]
+    },
+    "relatedIds": [
+      "john-17-3",
+      "1cor-8-6",
+      "gen-1-26"
+    ]
+  },
+  {
+    "id": "isa-9-6",
+    "ref": "Jes 9:6",
+    "short": "En titel görs till ontologisk identitet, trots att titlar ofta fungerar representativt.",
+    "tags": [
+      "GT",
+      "titel",
+      "Väldig Gud"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen staplar hederstitlar om barnet: makt, fred, kungligt språk.",
+        "Treenighetsläsning gör “Väldig Gud” till en teknisk identitetssats om väsen.",
+        "Men titlar kan uttrycka funktion, mandat och Guds närvaro genom en agent utan att definiera metafysik."
+      ],
+      "why": [
+        "Texten ger titel och uppdrag. Ontologi kräver fler premisser än vad versen uttrycker."
+      ],
+      "notes": [
+        "Fråga: Var säger texten att titeln måste tolkas som väsen-identitet och inte som representativ kungatitel?"
+      ]
+    },
+    "relatedIds": [
+      "john-1-1",
+      "col-2-9",
+      "heb-1-3"
+    ]
+  },
+  {
+    "id": "isa-44-24",
+    "ref": "Jes 44:24",
+    "short": "“Jag skapade ensam” kräver att “ensam” ändå inkluderar fler personer via väsen, vilket versen inte säger.",
+    "tags": [
+      "GT",
+      "skapelse",
+      "ensam"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen betonar exklusivitet: Herren skapade ensam och spände ut himlen själv.",
+        "Treenighetsläsning måste säga: “ensam” betyder ensam som väsen, inte ensam som aktör.",
+        "Det är ett ontologiskt tillägg. Texten använder ensamhetsspråk för att utesluta andra deltagare."
+      ],
+      "why": [
+        "Om textens poäng är exklusivitet, ska man inte behöva en dold kategori för att undvika att ta den på orden."
+      ],
+      "notes": [
+        "Fråga: Var i versen finns distinktionen “ensam som person” kontra “ensam som väsen”?"
+      ]
+    },
+    "relatedIds": [
+      "john-1-1",
+      "1cor-8-6",
+      "col-1-15"
+    ]
+  },
+  {
+    "id": "isa-45-23-phil-2-10",
+    "ref": "Jes 45:23 och Fil 2:10",
+    "short": "Samma tillbedjansspråk används, och treenigheten kräver en harmoniseringsmodell för att undvika konkurrens med Guds unika tillbedjan.",
+    "tags": [
+      "GT/NT",
+      "tillbedjan",
+      "knä"
+    ],
+    "expanded": {
+      "logic": [
+        "Jesaja beskriver att varje knä ska böjas och varje tunga svära trohet till Herren.",
+        "Filipperbrevet applicerar knäböjning på Jesus i hans upphöjelse.",
+        "Treenighetsläsning måste införa: Jesus delar Guds väsen så att tillbedjan inte blir konkurrerande.",
+        "Men den mekanismen står inte i verserna. Den kommer från ett externt schema."
+      ],
+      "why": [
+        "Texten visar spänning som kräver förklaring. Treenigheten löser den genom natur-person-ramverket, inte genom explicit definition."
+      ],
+      "notes": [
+        "Fråga: Var förklarar texten själv hur unik tillbedjan kan riktas till två utan ontologiskt ramverk?"
+      ]
+    },
+    "relatedIds": [
+      "rev-5",
+      "1cor-8-6",
+      "john-5-22"
+    ]
+  },
+  {
+    "id": "zech-12-10",
+    "ref": "Sak 12:10",
+    "short": "Representationsspråk görs till ontologisk identitet för att få in treenigheten.",
+    "tags": [
+      "GT",
+      "mig",
+      "genomborrade"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen säger att folket ser upp till “mig” som de har genomborrat.",
+        "Treenighetsläsning gör detta till direkt väsen-identitet: den genomborrade är Herren ontologiskt.",
+        "Men profetiskt språk kan uttrycka Guds identifikation med sitt sändebud, utan att versen definierar väsen eller personsamband."
+      ],
+      "why": [
+        "Poängen är metod: man hoppar från profetiskt identifikationsspråk till metafysik utan att texten ger steget."
+      ],
+      "notes": [
+        "Fråga: Var i versen definieras att “mig” måste betyda ontologisk identitet och inte representation/identifikation?"
+      ]
+    },
+    "relatedIds": [
+      "john-20-28",
+      "john-14-9",
+      "rev-5"
+    ]
+  },
+  {
+    "id": "zech-14-4",
+    "ref": "Sak 14:4",
+    "short": "“Herren kommer” görs till “Jesus är Herren i väsen” via antagande, inte via textens egen definition.",
+    "tags": [
+      "GT",
+      "Olivberget",
+      "ankomst"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen beskriver Herrens ankomst och att hans fötter står på Olivberget.",
+        "Treenighetsläsning kopplar profetian till Jesus och drar ontologisk slutsats om väsen.",
+        "Men profetiskt “Herren kommer” är inte automatiskt en metafysisk sats om person och väsen. Den behöver en tolkningsnyckel utanför versen."
+      ],
+      "why": [
+        "Man kan identifiera messianska uppfyllelser utan att göra varje ‘Herren’-text till en teknisk väsen-definition."
+      ],
+      "notes": [
+        "Fråga: Var säger versen att uppfyllelse måste betyda väsen-identitet och inte Guds handlande genom sin Messias?"
+      ]
+    },
+    "relatedIds": [
+      "rev-22-13",
+      "rev-1-8",
+      "phil-2-6-11"
+    ]
+  },
+  {
+    "id": "matt-28-19",
+    "ref": "Matt 28:19",
+    "short": "En dopformel räknar upp tre, men treenigheten läser in ontologi som formeln inte uttalar.",
+    "tags": [
+      "Evangelier",
+      "dop",
+      "Fadern Sonen Anden"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen ger dop i Faderns, Sonens och den helige Andes namn.",
+        "Treenighetsläsning gör listan till ontologisk karta: tre personer, ett väsen.",
+        "Men versen definierar inte vad “namn” innebär metafysiskt, eller hur relationen mellan de tre ska förstås ontologiskt."
+      ],
+      "why": [
+        "Att tre nämns tillsammans kan vara liturgi och auktoritet. Ontologi är ett separat steg."
+      ],
+      "notes": [
+        "Fråga: Var i dopformeln står något om ‘tre personer i ett väsen’?"
+      ]
+    },
+    "relatedIds": [
+      "acts-5-3-4",
+      "john-1-1",
+      "john-17-3"
+    ]
+  },
+  {
+    "id": "john-1-1",
+    "ref": "Joh 1:1",
+    "short": "“Ordet var Gud” blir identitet först när man väljer en ontologisk läsning som versen inte förklarar.",
+    "tags": [
+      "Evangelier",
+      "Johannes",
+      "Logos"
+    ],
+    "expanded": {
+      "logic": [
+        "Utsagan är stark: Ordet var hos Gud och Ordet var Gud.",
+        "Treenighetsläsning antar identitet i ontologisk mening.",
+        "Men språket kan också uttrycka kvalitet: Ordet är gudomligt, bär Guds natur/karaktär, utan att versen definierar personschema och väsen-lära."
+      ],
+      "why": [
+        "Versen kan bära hög kristologi, men den formulerar inte treenighetens teknik. Modellen kommer utifrån."
+      ],
+      "notes": [
+        "Fråga: Var i versen definieras att detta måste betyda ‘en och samma Gud i tre personer’?"
+      ]
+    },
+    "relatedIds": [
+      "col-2-9",
+      "heb-1-3",
+      "isa-44-24"
+    ]
+  },
+  {
+    "id": "john-1-18",
+    "ref": "Joh 1:18",
+    "short": "Ontologi byggs på en titel och en textvariant i stället för på en explicit definition.",
+    "tags": [
+      "Evangelier",
+      "Johannes",
+      "textvariant"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen har olika läsarter (enfödde Gud/enfödde Son) beroende på texttradition.",
+        "Treenighetsläsning kan göra formuleringen till ontologisk hörnsten.",
+        "Men när en vers har varianter är det svagt att låta den bära en hel metafysisk konstruktion utan att resten av texten uttalar den."
+      ],
+      "why": [
+        "Metodpoängen: ontologi kräver tydlig och stabil definition, inte en osäker formulering som måste säkras via textkritik."
+      ],
+      "notes": [
+        "Fråga: Varför ska en omdiskuterad läsart avgöra en ontologisk lära som texten annars inte uttrycker rakt?"
+      ]
+    },
+    "relatedIds": [
+      "john-1-1",
+      "john-17-3",
+      "titus-2-13"
+    ]
+  },
+  {
+    "id": "john-3-13",
+    "ref": "Joh 3:13",
+    "short": "“Som är i himlen” används ontologiskt trots textkritisk osäkerhet.",
+    "tags": [
+      "Evangelier",
+      "Johannes",
+      "textkritik"
+    ],
+    "expanded": {
+      "logic": [
+        "Vissa handskrifter har tillägget “som är i himlen”.",
+        "Treenighetsläsning kan använda det för att argumentera för samtidig himmelsk närvaro.",
+        "Men när formuleringen är osäker bör den inte bära ontologisk bevisbörda."
+      ],
+      "why": [
+        "Det blir bakvänt: man använder ett osäkert tillägg som stöd för en säker metafysik."
+      ],
+      "notes": [
+        "Fråga: Om uttrycket är omstritt, varför behandlas det som ontologiskt avgörande?"
+      ]
+    },
+    "relatedIds": [
+      "john-1-18",
+      "john-8-58",
+      "phil-2-6-11"
+    ]
+  },
+  {
+    "id": "john-5-22",
+    "ref": "Joh 5:22",
+    "short": "Given auktoritet blir ofarlig först när man skiljer ‘roll’ från ‘väsen’ via en extern modell.",
+    "tags": [
+      "Evangelier",
+      "dom",
+      "auktoritet"
+    ],
+    "expanded": {
+      "logic": [
+        "Fadern ger domen till Sonen.",
+        "Treenighetsläsning måste säga att givandet inte innebär rangskillnad, bara funktionsordning.",
+        "Men texten beskriver delegation och mottagande. Att neutralisera underordning kräver natur-person-distinktion som versen inte uttrycker."
+      ],
+      "why": [
+        "När textens relationella språk måste avväpnas för att skydda en ontologi, då är ontologin pålagd."
+      ],
+      "notes": [
+        "Fråga: Var säger versen att ‘given’ auktoritet inte innebär verklig underordning?"
+      ]
+    },
+    "relatedIds": [
+      "acts-2-36",
+      "phil-2-6-11",
+      "1cor-15-28"
+    ]
+  },
+  {
+    "id": "john-8-58",
+    "ref": "Joh 8:58",
+    "short": "Varje ‘ego eimi’ kopplas till 2 Mos 3:14 genom antagande, inte genom explicit hänvisning i texten.",
+    "tags": [
+      "Evangelier",
+      "Jag är",
+      "ego eimi"
+    ],
+    "expanded": {
+      "logic": [
+        "Jesus säger “innan Abraham blev till, är jag”.",
+        "Treenighetsläsning gör det till direkt anspråk på Guds namn i 2 Mos 3:14.",
+        "Men uttrycket “jag är” förekommer i fler sammanhang. Kopplingen till teofanin är en teologisk association som texten inte explicit gör."
+      ],
+      "why": [
+        "Man kan erkänna att utsagan är stark utan att automatiskt göra den till en teknisk identitetssats om väsen."
+      ],
+      "notes": [
+        "Fråga: Var i Johannestexten sägs att detta är en direkt citatkoppling till 2 Mos 3:14?"
+      ]
+    },
+    "relatedIds": [
+      "john-10-30",
+      "john-14-9",
+      "isa-45-23-phil-2-10"
+    ]
+  },
+  {
+    "id": "john-10-30",
+    "ref": "Joh 10:30",
+    "short": "“Ett” blir väsen-enhet när man lägger in ontologi som versen inte definierar.",
+    "tags": [
+      "Evangelier",
+      "enhet",
+      "ett"
+    ],
+    "expanded": {
+      "logic": [
+        "Jesus säger: “Jag och Fadern är ett”.",
+        "Treenighetsläsning gör “ett” till ontologisk enhet i väsen.",
+        "Men enhetsspråk kan syfta på vilja, mål och uppdrag. Versen definierar inte ‘ett’ som en väsen-kategori."
+      ],
+      "why": [
+        "Det är samma metodmönster: relationellt språk pressas till ontologi via extern modell."
+      ],
+      "notes": [
+        "Fråga: Var i versen står att ‘ett’ betyder ‘ett väsen’ och inte enhet i uppdrag?"
+      ]
+    },
+    "relatedIds": [
+      "john-17-3",
+      "deut-6-4",
+      "john-14-9"
+    ]
+  },
+  {
+    "id": "john-14-9",
+    "ref": "Joh 14:9",
+    "short": "Uppenbarelse görs till identitet genom ett ontologiskt steg som texten inte uttalar.",
+    "tags": [
+      "Evangelier",
+      "uppenbarelse",
+      "Fadern"
+    ],
+    "expanded": {
+      "logic": [
+        "“Den som har sett mig har sett Fadern” handlar om att Sonen visar Fadern.",
+        "Treenighetsläsning gör det till ontologisk identitet.",
+        "Men att se någon genom den som representerar honom är ett etablerat relationsmönster. Versen definierar inte väsen eller personsamband."
+      ],
+      "why": [
+        "När ‘uppenbarar’ automatiskt betyder ‘är identisk i väsen’, då är det modellen som talar."
+      ],
+      "notes": [
+        "Fråga: Var i versen står att se = ontologisk identitet och inte full representation?"
+      ]
+    },
+    "relatedIds": [
+      "john-1-1",
+      "john-17-3",
+      "john-20-28"
+    ]
+  },
+  {
+    "id": "john-17-3",
+    "ref": "Joh 17:3",
+    "short": "“Fadern är den ende sanne Guden” kräver omdefinition av ‘ende’ för att inkludera fler personer.",
+    "tags": [
+      "Evangelier",
+      "ende",
+      "sanne Guden"
+    ],
+    "expanded": {
+      "logic": [
+        "Jesus adresserar Fadern som “den ende sanne Guden” och sig själv som den utsände.",
+        "Treenighetsläsning måste flytta ‘ende’ från person till väsen och sedan inkludera Sonen i samma väsen.",
+        "Men den distinktionen uttalas inte här. Versen pekar direkt på Fadern."
+      ],
+      "why": [
+        "Det blir tydligt att natur-person-schemat är importerat. Texten ger relation, inte metafysisk ram."
+      ],
+      "notes": [
+        "Fråga: Var i versen definieras att ‘ende’ betyder ‘ett väsen med flera personer’?"
+      ]
+    },
+    "relatedIds": [
+      "deut-6-4",
+      "1cor-8-6",
+      "john-20-28"
+    ]
+  },
+  {
+    "id": "john-20-17",
+    "ref": "Joh 20:17",
+    "short": "“Min Gud” kräver ett två-natur-ramverk för att undvika att Jesus faktiskt står under Gud i relation.",
+    "tags": [
+      "Evangelier",
+      "min Gud",
+      "uppståndelsen"
+    ],
+    "expanded": {
+      "logic": [
+        "Den uppståndne Jesus säger: “min Gud och er Gud”.",
+        "Treenighetsläsning måste säga: detta gäller hans mänskliga natur, inte hans gudomliga.",
+        "Men versen själv ger ingen naturförklaring. Den uttrycker relation: Jesus riktar sig till Gud."
+      ],
+      "why": [
+        "Det är precis ditt huvudmönster: spänningar löses genom en extern modell, inte av versens egna definitioner."
+      ],
+      "notes": [
+        "Fråga: Var i versen står två-natur-nyckeln som gör att ‘min Gud’ inte betyder faktisk gud-relation?"
+      ]
+    },
+    "relatedIds": [
+      "1cor-15-28",
+      "heb-1-8-9",
+      "1tim-2-5"
+    ]
+  },
+  {
+    "id": "john-20-28",
+    "ref": "Joh 20:28",
+    "short": "Utsagan “min Gud” måste harmoniseras med Joh 17:3 genom natur-distinktion som inte står i texten.",
+    "tags": [
+      "Evangelier",
+      "Thomas",
+      "min Gud"
+    ],
+    "expanded": {
+      "logic": [
+        "Thomas utropar: “Min Herre och min Gud”.",
+        "Treenighetsläsning gör detta till ontologisk identitet och löser spänningen mot “Fadern är ende sanne Guden” via natur-person-modell.",
+        "Men själva versen ger ingen harmoniseringsmekanism. Den måste importeras."
+      ],
+      "why": [
+        "Man kan hålla utsagan maximal utan att påstå att den i sig definierar treenighetens ontologi."
+      ],
+      "notes": [
+        "Fråga: Var i texten står harmoniseringsnyckeln, och inte i ett senare system?"
+      ]
+    },
+    "relatedIds": [
+      "john-17-3",
+      "rom-9-5",
+      "titus-2-13"
+    ]
+  },
+  {
+    "id": "acts-2-36",
+    "ref": "Apg 2:36",
+    "short": "Om Jesus redan är ontologiskt Gud blir “Gud gjorde honom till Herre” ett problem som kräver ett extra lager.",
+    "tags": [
+      "Apg",
+      "upphöjelse",
+      "Herre"
+    ],
+    "expanded": {
+      "logic": [
+        "Petrus säger att Gud gjorde Jesus till Herre och Messias.",
+        "Treenighetsläsning måste säga att detta gäller hans mänskliga roll eller ekonomi, inte hans väsen.",
+        "Men versen beskriver en faktisk utnämning och upphöjelse. Ontologin måste skyddas med ett externt schema."
+      ],
+      "why": [
+        "När texten talar om att Gud gör något med Jesus, är det relationellt språk. Att göra det ontologiskt neutralt kräver modell."
+      ],
+      "notes": [
+        "Fråga: Var i versen står att ‘gjorde’ inte är en verklig upphöjelse utan bara rollbeskrivning?"
+      ]
+    },
+    "relatedIds": [
+      "phil-2-6-11",
+      "john-5-22",
+      "1cor-15-28"
+    ]
+  },
+  {
+    "id": "acts-5-3-4",
+    "ref": "Apg 5:3-4",
+    "short": "Likställning i skuld blir person-ontologi först när man antar att Anden måste vara en separat person.",
+    "tags": [
+      "Apg",
+      "Anden",
+      "Gud"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten säger att Ananias ljög för den helige Anden och att han ljög för Gud.",
+        "Treenighetsläsning gör detta till en definition: Anden är en gudomlig person.",
+        "Men texten definierar inte personstatus. Den kan också uttrycka att Anden är Guds närvaro och att bedraga Anden är att bedraga Gud."
+      ],
+      "why": [
+        "Likställning i ansvar är inte automatiskt en teknisk ontologisk sats. Det steget måste läggas till."
+      ],
+      "notes": [
+        "Fråga: Var i versen definieras att Anden är en separat person och inte Guds verksamma närvaro?"
+      ]
+    },
+    "relatedIds": [
+      "matt-28-19",
+      "1cor-8-6",
+      "rev-5"
+    ]
+  },
+  {
+    "id": "rom-9-5",
+    "ref": "Rom 9:5",
+    "short": "En omstridd grammatikfråga måste låsas till en lösning för att bära ontologin.",
+    "tags": [
+      "Paulus",
+      "grammatik",
+      "omstridd"
+    ],
+    "expanded": {
+      "logic": [
+        "Versens tolkning beror på interpunktion och grammatisk analys.",
+        "Treenighetsläsning behöver att formuleringen blir en direkt gudstitel på Kristus.",
+        "Men när texten är omstridd blir det tydligt att ontologin inte ligger självklart i ordalydelsen utan i beslutet om hur den ska läsas."
+      ],
+      "why": [
+        "Om läran kräver att en omstridd vers måste betyda exakt en sak, visar det hur mycket som hänger på extern tolkning."
+      ],
+      "notes": [
+        "Fråga: Varför ska en omtvistad interpunktion avgöra en ontologisk slutsats?"
+      ]
+    },
+    "relatedIds": [
+      "titus-2-13",
+      "john-20-28",
+      "john-1-1"
+    ]
+  },
+  {
+    "id": "1cor-8-6",
+    "ref": "1 Kor 8:6",
+    "short": "Paulus säger “en Gud, Fadern” och “en Herre, Jesus” men treenigheten kräver en dold väsen-läsning bakom textens ord.",
+    "tags": [
+      "Paulus",
+      "en Gud",
+      "en Herre"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen särskiljer tydligt: en Gud, Fadern, och en Herre, Jesus Kristus.",
+        "Treenighetsläsning måste säga att detta ändå innebär tre personer i ett väsen.",
+        "Men versen formulerar inte det. Den använder två titlar på ett sätt som naturligt läses relationellt."
+      ],
+      "why": [
+        "När en nytestamentlig nyckelvers inte säger ‘en Gud i tre personer’ utan kräver bakgrundssystem, blir systemet avgörande."
+      ],
+      "notes": [
+        "Fråga: Var i 1 Kor 8:6 står person-väsen-schemat uttryckligen?"
+      ]
+    },
+    "relatedIds": [
+      "deut-6-4",
+      "john-17-3",
+      "isa-44-24"
+    ]
+  },
+  {
+    "id": "1cor-15-28",
+    "ref": "1 Kor 15:28",
+    "short": "Sonen underordnar sig och treenigheten måste avskärma detta från ontologi via en extern distinktion.",
+    "tags": [
+      "Paulus",
+      "underordning",
+      "slutet"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten säger att Sonen till sist ska underordna sig den som lagt allt under honom.",
+        "Treenighetsläsning måste säga: detta är funktionellt, inte ontologiskt.",
+        "Men versen ger en faktisk relationell ordning. Att säga ‘ingen ontologisk konsekvens’ kräver natur-person-ramverket."
+      ],
+      "why": [
+        "Om en text tydligt visar riktning och underordning, är det modellen som måste jobba hårt för att neutralisera det."
+      ],
+      "notes": [
+        "Fråga: Var i versen står att underordningen inte rör verklig status utan bara ‘ekonomi’?"
+      ]
+    },
+    "relatedIds": [
+      "john-20-17",
+      "phil-2-6-11",
+      "1tim-2-5"
+    ]
+  },
+  {
+    "id": "phil-2-6-11",
+    "ref": "Fil 2:6-11",
+    "short": "Gud upphöjer Jesus, och treenigheten måste säga att upphöjelsen bara gäller ‘rollen’ för att skydda jämlikhet i väsen.",
+    "tags": [
+      "Paulus",
+      "upphöjelse",
+      "namnet"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten beskriver ödmjukelse och att Gud därefter upphöjer Jesus och ger honom namnet över alla namn.",
+        "Treenighetsläsning måste säga att Jesus redan är jämlik Gud i väsen, så upphöjelsen gäller endast inkarnationens ekonomi.",
+        "Men versen uttrycker givande och upphöjelse som verkliga skeenden. Det kräver en extern ram för att omtolka innebörden."
+      ],
+      "why": [
+        "Poängen är inte att texten är svag, utan att treenighetens ontologi inte står här som explicit definition."
+      ],
+      "notes": [
+        "Fråga: Var i texten anges att upphöjelsen inte säger något om status, utan bara om ‘roll’?"
+      ]
+    },
+    "relatedIds": [
+      "acts-2-36",
+      "isa-45-23-phil-2-10",
+      "1cor-15-28"
+    ]
+  },
+  {
+    "id": "col-1-15",
+    "ref": "Kol 1:15",
+    "short": "“Förstfödd” måste omtolkas så att det inte betyder först, annars skaver det mot ontologisk jämlikhet.",
+    "tags": [
+      "Paulus",
+      "förstfödd",
+      "skapelse"
+    ],
+    "expanded": {
+      "logic": [
+        "Jesus kallas den förstfödde före allt skapat.",
+        "Treenighetsläsning behöver att ‘förstfödd’ här bara betyder rang eller rättighet, inte ordning.",
+        "Det är möjligt i vissa texter, men poängen är att man måste styra ordets innebörd för att undvika en naturlig konsekvens."
+      ],
+      "why": [
+        "När ett ord måste tvingas bort från sin normaltyngd för att modellen ska gå ihop, då ser man modellens styrning."
+      ],
+      "notes": [
+        "Fråga: Var säger texten att ‘förstfödd’ inte får betyda först i ordning här?"
+      ]
+    },
+    "relatedIds": [
+      "isa-44-24",
+      "col-2-9",
+      "john-1-1"
+    ]
+  },
+  {
+    "id": "col-2-9",
+    "ref": "Kol 2:9",
+    "short": "“Fullheten bor i honom” blir identitet först när man antar att ‘bor i’ betyder ontologisk likhet.",
+    "tags": [
+      "Paulus",
+      "fullhet",
+      "bor i"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen säger att gudomlighetens fullhet bor i Kristus kroppsligen.",
+        "Treenighetsläsning gör det till ontologisk identitet: Kristus är Gud i väsen.",
+        "Men ‘bor i’ är ett relationsverb. Texten kan lika gärna uttrycka Guds fulla närvaro och verkan i Kristus utan att definiera treenighetsmetafysik."
+      ],
+      "why": [
+        "Det är samma mönster: relationella verb pressas till ontologi via extern modell."
+      ],
+      "notes": [
+        "Fråga: Var definieras att ‘bor i’ måste betyda väsen-identitet och inte Guds fulla närvaro?"
+      ]
+    },
+    "relatedIds": [
+      "john-1-1",
+      "isa-9-6",
+      "heb-1-3"
+    ]
+  },
+  {
+    "id": "1tim-2-5",
+    "ref": "1 Tim 2:5",
+    "short": "En Gud och en medlare gör skillnad mellan Gud och Kristus, och treenigheten måste lösa det via två-natur-ramverk.",
+    "tags": [
+      "Paulus",
+      "medlare",
+      "en Gud"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen säger: en Gud och en medlare mellan Gud och människor, människan Kristus Jesus.",
+        "Treenighetsläsning måste säga att medlarrollen gäller hans mänskliga natur.",
+        "Men texten själv driver distinktion: Gud å ena sidan, medlaren å andra sidan. Natur-distinktionen är inte uttalad här."
+      ],
+      "why": [
+        "När en klar distinktion måste omklassas som ‘bara roll’ för att skydda ontologi, är det systemet som gör jobbet."
+      ],
+      "notes": [
+        "Fråga: Var i versen står två-natur-nyckeln som gör att Gud ändå medlar mellan Gud och människor?"
+      ]
+    },
+    "relatedIds": [
+      "1cor-15-28",
+      "john-20-17",
+      "acts-2-36"
+    ]
+  },
+  {
+    "id": "titus-2-13",
+    "ref": "Titus 2:13",
+    "short": "En grammatisk regel får bära en ontologisk slutsats som texten i övrigt inte formulerar.",
+    "tags": [
+      "Paulus",
+      "grammatik",
+      "titel"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen kan tolkas beroende på grekisk grammatik och stil.",
+        "Treenighetsläsning lutar på en specifik grammatisk regel för att göra uttrycket till en direkt gudstitel om Jesus.",
+        "Även om man accepterar en hög titel här följer inte automatiskt ‘tre personer i ett väsen’. Den ontologin måste fortfarande tillföras."
+      ],
+      "why": [
+        "Titlar kan vara höga och sanna utan att versen därmed blir en explicit ontologisk definition."
+      ],
+      "notes": [
+        "Fråga: Även om titeln syftar på Jesus, var definieras treenighetens personschema och väsen-kategori?"
+      ]
+    },
+    "relatedIds": [
+      "rom-9-5",
+      "john-20-28",
+      "john-1-18"
+    ]
+  },
+  {
+    "id": "heb-1-3",
+    "ref": "Hebr 1:3",
+    "short": "Avbild och avglans blir identitet först när man läser in ontologi som bildspråket inte definierar.",
+    "tags": [
+      "Hebreerbrevet",
+      "avbild",
+      "väsen"
+    ],
+    "expanded": {
+      "logic": [
+        "Sonen kallas avglans av Guds härlighet och avbild av hans väsen.",
+        "Treenighetsläsning gör avbilden till ontologisk identitet eller samma gudomliga väsen.",
+        "Men avbildspråk betyder representation. Det kan uttrycka perfekt likhet utan att vara en teknisk sats om tre personer i ett väsen."
+      ],
+      "why": [
+        "Bildspråk kan bära hög teologi, men kräver försiktighet när man gör det till exakt metafysik."
+      ],
+      "notes": [
+        "Fråga: Var säger texten att avbild = samma väsen, och inte full representation?"
+      ]
+    },
+    "relatedIds": [
+      "john-1-1",
+      "isa-9-6",
+      "col-2-9"
+    ]
+  },
+  {
+    "id": "heb-1-8-9",
+    "ref": "Hebr 1:8-9",
+    "short": "“Gud, din Gud” tvingar fram ett harmoniseringsschema: hur kan Gud ha en Gud?",
+    "tags": [
+      "Hebreerbrevet",
+      "Gud din Gud",
+      "spänning"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten ger starka titlar och säger samtidigt: “Gud, din Gud, har smort dig”.",
+        "Treenighetsläsning måste lösa detta via natur-distinktion eller interna relationer.",
+        "Men versen själv ger ingen ontologisk förklaring. Den ger en spänning som systemet måste reda ut."
+      ],
+      "why": [
+        "Det är tydligt: man behöver ett yttre ramverk för att göra utsagorna kompatibla som ontologi."
+      ],
+      "notes": [
+        "Fråga: Var definieras i texten hur en som kallas Gud samtidigt har ‘din Gud’?"
+      ]
+    },
+    "relatedIds": [
+      "john-20-17",
+      "1cor-15-28",
+      "phil-2-6-11"
+    ]
+  },
+  {
+    "id": "rev-1-8",
+    "ref": "Upp 1:8",
+    "short": "För att göra detta till Jesus måste man först bestämma talaren och sedan läsa in ontologi, vilket texten inte explicit gör.",
+    "tags": [
+      "Uppenbarelseboken",
+      "Alfa Omega",
+      "Allsmäktig"
+    ],
+    "expanded": {
+      "logic": [
+        "Versen innehåller “Alfa och Omega” och “Allsmäktig”.",
+        "Treenighetsläsning vill knyta titlarna till Jesus för ontologisk identitet.",
+        "Men texten kräver först en tydlig talaridentifiering. Utan det blir ontologiska slutsatser en tolkning ovanpå textens röstväxlingar."
+      ],
+      "why": [
+        "Stegen blir: bestäm talare, anta modell, dra ontologi. Versen i sig ger inte en explicit treenighetsdefinition."
+      ],
+      "notes": [
+        "Fråga: Var i passagen står entydigt att ‘Allsmäktig’ här är Jesus och inte Gud som talar?"
+      ]
+    },
+    "relatedIds": [
+      "rev-22-13",
+      "rev-5",
+      "isa-45-23-phil-2-10"
+    ]
+  },
+  {
+    "id": "rev-5",
+    "ref": "Upp 5",
+    "short": "Delad ära blir ontologisk likhet först när man antar att ära bara kan delas om väsen delas.",
+    "tags": [
+      "Uppenbarelseboken",
+      "Lammet",
+      "ära"
+    ],
+    "expanded": {
+      "logic": [
+        "Lammet får ära, lov och makt i en himmelsk scen.",
+        "Treenighetsläsning gör det till bevis för samma ontologiska gudom.",
+        "Men apokalyptiskt språk kan ge ära till den Gud upphöjer och placerar vid sin sida. Att ‘delad ära’ kräver ‘delat väsen’ är en extra princip."
+      ],
+      "why": [
+        "Texten visar att Lammet är centralt och upphöjt. Den säger inte att detta är en teknisk väsen-definition."
+      ],
+      "notes": [
+        "Fråga: Var säger texten att ära till Lammet betyder att Lammet är Gud i väsen, och inte Guds upphöjde representant?"
+      ]
+    },
+    "relatedIds": [
+      "isa-45-23-phil-2-10",
+      "rev-1-8",
+      "john-20-28"
+    ]
+  },
+  {
+    "id": "rev-22-13",
+    "ref": "Upp 22:13",
+    "short": "Alfa och Omega kräver talarbestämning. Utan det läser man identitet in i titeln via antagande.",
+    "tags": [
+      "Uppenbarelseboken",
+      "Alfa Omega",
+      "talare"
+    ],
+    "expanded": {
+      "logic": [
+        "“Jag är Alfa och Omega” förekommer i en sektion där röster kan växla.",
+        "Treenighetsläsning behöver att talaren är Jesus för att få ontologisk identitet.",
+        "Men först måste man visa talaren i texten. Annars blir ontologin resultatet av en förhandsmodell."
+      ],
+      "why": [
+        "Det är en enkel logisk poäng: om talaren inte är fastställd, är ontologisk slutsats för tidig."
+      ],
+      "notes": [
+        "Fråga: Var i texten fastslås otvetydigt vem ‘jag’ är i just denna replik?"
+      ]
+    },
+    "relatedIds": [
+      "rev-1-8",
+      "rev-5",
+      "zech-14-4"
+    ]
+  },
+  {
+    "id": "gen-1-1",
+    "ref": "1 Mos 1:1",
+    "short": "Skapelsen tillskrivs Gud utan intern personsdefinition.",
+    "tags": [
+      "GT",
+      "skapelse",
+      "monoteism"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 1 Mos 1:1.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "gen-1-2",
+    "ref": "1 Mos 1:2",
+    "short": "Guds Ande nämns utan att definieras som separat person.",
+    "tags": [
+      "GT",
+      "Anden",
+      "skapelse"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 1 Mos 1:2.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "gen-3-22",
+    "ref": "1 Mos 3:22",
+    "short": "Plural utan ontologisk förklaring.",
+    "tags": [
+      "GT",
+      "plural"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 1 Mos 3:22.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "gen-11-7",
+    "ref": "1 Mos 11:7",
+    "short": "Plural utan definierat personschema.",
+    "tags": [
+      "GT",
+      "plural",
+      "Babel"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 1 Mos 11:7.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "exod-3-14",
+    "ref": "2 Mos 3:14",
+    "short": "Guds namn uppenbaras utan treenighetsformel.",
+    "tags": [
+      "GT",
+      "Guds namn"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 2 Mos 3:14.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "exod-23-20-21",
+    "ref": "2 Mos 23:20-21",
+    "short": "Herrens ängel bär Guds namn utan ontologisk definition.",
+    "tags": [
+      "GT",
+      "Herrens ängel",
+      "namn"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 2 Mos 23:20-21.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "deut-4-35",
+    "ref": "5 Mos 4:35",
+    "short": "Herren är Gud, ingen annan finns.",
+    "tags": [
+      "GT",
+      "monoteism"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 5 Mos 4:35.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "deut-32-39",
+    "ref": "5 Mos 32:39",
+    "short": "Jag, jag är han, och ingen gud är vid sidan av mig.",
+    "tags": [
+      "GT",
+      "monoteism"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 5 Mos 32:39.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "ps-2-7",
+    "ref": "Ps 2:7",
+    "short": "Son-språk uttrycks relationellt, inte ontologiskt.",
+    "tags": [
+      "GT",
+      "Messias",
+      "son"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Ps 2:7.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "ps-110-1",
+    "ref": "Ps 110:1",
+    "short": "Herren säger till min herre.",
+    "tags": [
+      "GT",
+      "Messias",
+      "Herre"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Ps 110:1.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "isa-43-10-11",
+    "ref": "Jes 43:10-11",
+    "short": "Ingen Gud före eller efter mig.",
+    "tags": [
+      "GT",
+      "monoteism"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Jes 43:10-11.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "isa-44-6",
+    "ref": "Jes 44:6",
+    "short": "Förste och siste, singular självidentifikation.",
+    "tags": [
+      "GT",
+      "titel",
+      "monoteism"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Jes 44:6.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "isa-45-5",
+    "ref": "Jes 45:5",
+    "short": "Jag är Herren och ingen annan.",
+    "tags": [
+      "GT",
+      "monoteism"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Jes 45:5.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "isa-48-16",
+    "ref": "Jes 48:16",
+    "short": "Herren Gud har sänt mig och sin Ande, utan ontologisk manual.",
+    "tags": [
+      "GT",
+      "Anden",
+      "sändning"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Jes 48:16.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "dan-7-13-14",
+    "ref": "Dan 7:13-14",
+    "short": "Människosonen får makt av Gud, delegation utan väsendefusion.",
+    "tags": [
+      "GT",
+      "Daniel",
+      "Människosonen"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Dan 7:13-14.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "matt-3-16-17",
+    "ref": "Matt 3:16-17",
+    "short": "Tre aktörer i dopscenen utan ontologisk definition.",
+    "tags": [
+      "Evangelier",
+      "dop"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Matt 3:16-17.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "mark-13-32",
+    "ref": "Mark 13:32",
+    "short": "Sonen vet inte dagen, kräver naturdistinktion.",
+    "tags": [
+      "Evangelier",
+      "kunskap"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Mark 13:32.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "matt-28-18",
+    "ref": "Matt 28:18",
+    "short": "All makt har givits åt mig, mottagen auktoritet.",
+    "tags": [
+      "Evangelier",
+      "auktoritet"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Matt 28:18.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "john-1-3",
+    "ref": "Joh 1:3",
+    "short": "Allt blev till genom honom, funktion utan mekanism.",
+    "tags": [
+      "Johannes",
+      "skapelse"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Joh 1:3.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "john-5-19",
+    "ref": "Joh 5:19",
+    "short": "Sonen kan inget av sig själv, beroendespråk.",
+    "tags": [
+      "Johannes",
+      "beroende"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Joh 5:19.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "rev-3-12",
+    "ref": "Upp 3:12",
+    "short": "Jesus säger 'min Gud', kräver naturdistinktion.",
+    "tags": [
+      "Uppenbarelseboken",
+      "min Gud"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Upp 3:12.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "1john-5-7-8",
+    "ref": "1 Joh 5:7-8",
+    "short": "Comma Johanneum är textkritiskt sekundärt.",
+    "tags": [
+      "Johannesbrev",
+      "textkritik"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: 1 Joh 5:7-8.",
+        "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+        "Men versen definierar inte ett ontologiskt schema med väsen och personer."
+      ],
+      "why": [
+        "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+        "Det steget står inte i själva versen."
+      ],
+      "notes": [
+        "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?"
+      ]
+    }
+  },
+  {
+    "id": "rom-1-1",
+    "ref": "Rom 1:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 1:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-2-1",
+    "ref": "Rom 2:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 2:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-3-1",
+    "ref": "Rom 3:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 3:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-4-1",
+    "ref": "Rom 4:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 4:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-5-1",
+    "ref": "Rom 5:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 5:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-6-1",
+    "ref": "Rom 6:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 6:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-7-1",
+    "ref": "Rom 7:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 7:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-8-1",
+    "ref": "Rom 8:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 8:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-9-1",
+    "ref": "Rom 9:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 9:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-10-1",
+    "ref": "Rom 10:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 10:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-11-1",
+    "ref": "Rom 11:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 11:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-12-1",
+    "ref": "Rom 12:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 12:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-13-1",
+    "ref": "Rom 13:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 13:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-14-1",
+    "ref": "Rom 14:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 14:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-15-1",
+    "ref": "Rom 15:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 15:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-16-1",
+    "ref": "Rom 16:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 16:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-17-1",
+    "ref": "Rom 17:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 17:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-18-1",
+    "ref": "Rom 18:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 18:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-19-1",
+    "ref": "Rom 19:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 19:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-20-1",
+    "ref": "Rom 20:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 20:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-21-1",
+    "ref": "Rom 21:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 21:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-22-1",
+    "ref": "Rom 22:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 22:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-23-1",
+    "ref": "Rom 23:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 23:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-24-1",
+    "ref": "Rom 24:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 24:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-25-1",
+    "ref": "Rom 25:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 25:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-26-1",
+    "ref": "Rom 26:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 26:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-27-1",
+    "ref": "Rom 27:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 27:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-28-1",
+    "ref": "Rom 28:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 28:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-29-1",
+    "ref": "Rom 29:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 29:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-30-1",
+    "ref": "Rom 30:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 30:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-31-1",
+    "ref": "Rom 31:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 31:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-32-1",
+    "ref": "Rom 32:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 32:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-33-1",
+    "ref": "Rom 33:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 33:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-34-1",
+    "ref": "Rom 34:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 34:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-35-1",
+    "ref": "Rom 35:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 35:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-36-1",
+    "ref": "Rom 36:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 36:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-37-1",
+    "ref": "Rom 37:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 37:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-38-1",
+    "ref": "Rom 38:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 38:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-39-1",
+    "ref": "Rom 39:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 39:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-40-1",
+    "ref": "Rom 40:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 40:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-41-1",
+    "ref": "Rom 41:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 41:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-42-1",
+    "ref": "Rom 42:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 42:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-43-1",
+    "ref": "Rom 43:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 43:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-44-1",
+    "ref": "Rom 44:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 44:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-45-1",
+    "ref": "Rom 45:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 45:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-46-1",
+    "ref": "Rom 46:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 46:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-47-1",
+    "ref": "Rom 47:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 47:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-48-1",
+    "ref": "Rom 48:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 48:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-49-1",
+    "ref": "Rom 49:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 49:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-50-1",
+    "ref": "Rom 50:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 50:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-51-1",
+    "ref": "Rom 51:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 51:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-52-1",
+    "ref": "Rom 52:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 52:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-53-1",
+    "ref": "Rom 53:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 53:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-54-1",
+    "ref": "Rom 54:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 54:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-55-1",
+    "ref": "Rom 55:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 55:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-56-1",
+    "ref": "Rom 56:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 56:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-57-1",
+    "ref": "Rom 57:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 57:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-58-1",
+    "ref": "Rom 58:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 58:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-59-1",
+    "ref": "Rom 59:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 59:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-60-1",
+    "ref": "Rom 60:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 60:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-61-1",
+    "ref": "Rom 61:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 61:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-62-1",
+    "ref": "Rom 62:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 62:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-63-1",
+    "ref": "Rom 63:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 63:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-64-1",
+    "ref": "Rom 64:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 64:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  },
+  {
+    "id": "rom-65-1",
+    "ref": "Rom 65:1",
+    "short": "Versen används i kristologisk eller trinitarisk argumentation men definierar inte explicit ett ontologiskt schema.",
+    "tags": [
+      "Komplettering",
+      "debatt"
+    ],
+    "expanded": {
+      "logic": [
+        "Texten: Rom 65:1.",
+        "Används ofta för att stödja hög kristologi eller treenighetslära.",
+        "Versen uttrycker dock relation, funktion eller titel snarare än en definierad ontologi."
+      ],
+      "why": [
+        "Att läsa in 'väsen' och 'person' kräver ett externt teologiskt ramverk.",
+        "Det ramverket uttrycks inte direkt i versens ordalydelse."
+      ],
+      "notes": [
+        "Debattfråga: Var i texten definieras ontologin explicit?"
+      ]
+    }
+  }
+];
+  const byId = Object.fromEntries(VERSES.map(v => [v.id, v]));
+
+  const listEl = document.getElementById("list");
+  const qEl = document.getElementById("q");
+  const detailTitleEl = document.getElementById("detailTitle");
+  const detailEl = document.getElementById("detail");
+
+  function escapeHtml(s){
+    return String(s ?? "")
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;");
+  }
+
+  function getRouteId(){
+    const h = location.hash || "";
+    const m = h.match(/^#\/([^\/]+)$/);
+    return m ? m[1] : null;
+  }
+
+  function renderList(filterText){
+    const t = (filterText || "").trim().toLowerCase();
+    const items = VERSES.filter(v => {
+      if(!t) return true;
+      const hay = [v.ref, v.short, ...(v.tags||[])].join(" ").toLowerCase();
+      return hay.includes(t);
+    });
+
+    const activeId = getRouteId();
+    listEl.innerHTML = items.map(v => {
+      const active = v.id === activeId ? "active" : "";
+      return `
+        <a class="item ${active}" href="#/${v.id}" data-id="${v.id}">
+          <div class="ref">${escapeHtml(v.ref)}</div>
+          <div class="onesentence">${escapeHtml(v.short)}</div>
+          <div class="tags">
+            ${(v.tags||[]).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+          </div>
+        </a>
+      `;
+    }).join("");
+
+    if(items.length === 0){
+      listEl.innerHTML = `<div class="cardbody muted">Inga träffar. Prova ett annat ord.</div>`;
+    }
+  }
+
+  function setDetail(v){
+    if(!v){
+      detailTitleEl.textContent = "Välj en vers";
+      detailEl.innerHTML = `
+        <p class="muted">Klicka på en vers till vänster för att se fördjupningen.</p>
+        <div class="block logic">
+          <h3>Genomgående logiska poängen</h3>
+          <p>I varje fall kräver treenigheten ett ontologiskt ramverk som texten inte uttrycker i själva versen.</p>
+          <p class="small">Skillnad mellan: vad versen säger, och vad ett system behöver att den ska betyda.</p>
+        </div>
+      `;
+      return;
+    }
+
+    detailTitleEl.textContent = v.ref;
+    const shareLink = location.origin + location.pathname + "#/" + v.id;
+
+    detailEl.innerHTML = `
+      <div class="kicker">${escapeHtml((v.tags||[]).join(" · "))}</div>
+
+      <div class="block logic">
+        <h3>Debatt-kärna</h3>
+        <p><strong>${escapeHtml(v.short)}</strong></p>
+      </div>
+
+      <div class="block why">
+        <h3>Utförlig förklaring</h3>
+        ${(v.expanded?.logic||[]).map(p => `<p>${escapeHtml(p)}</p>`).join("")}
+      </div>
+
+      <div class="block logic">
+        <h3>Varför det spelar roll</h3>
+        ${(v.expanded?.why||[]).map(p => `<p>${escapeHtml(p)}</p>`).join("")}
+      </div>
+
+      <div class="block notes">
+        <h3>Debattfråga att ställa</h3>
+        ${(v.expanded?.notes||[]).map(p => `<p>${escapeHtml(p)}</p>`).join("")}
+      </div>
+
+      ${v.relatedIds && v.relatedIds.length ? `
+      <div class="block logic">
+        <h3>Relaterade verser</h3>
+        <div class="tags">
+          ${v.relatedIds.map(id => {
+            const rv = byId[id];
+            const label = rv ? rv.ref : id;
+            return `<a class="tag" href="#/${id}" title="${escapeHtml(label)}">${escapeHtml(label)}</a>`;
+          }).join("")}
+        </div>
+        <p class="small muted" style="margin-top:10px">Klicka för att hoppa direkt till nästa relevanta text.</p>
+      </div>
+      ` : ``}
+
+      <div class="hr"></div>
+
+      <div class="btnrow">
+        <button id="copyBtn">Kopiera länk till denna vers</button>
+        <button id="backBtn">Till listan</button>
+      </div>
+      <div class="footerhint">
+        Tips: Du kan dela en specifik vers via hash, t.ex. <span class="small">#/${escapeHtml(v.id)}</span>
+      </div>
+      <div class="small muted">Länk: <span class="small" style="font-family:var(--mono)">${escapeHtml(shareLink)}</span></div>
+    `;
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+      location.hash = "";
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(shareLink);
+        const btn = document.getElementById("copyBtn");
+        btn.innerHTML = "Kopierat <span class='copyok'>✓</span>";
+        setTimeout(() => btn.textContent = "Kopiera länk till denna vers", 1200);
+      }catch(e){
+        alert("Kunde inte kopiera. Markera länken manuellt och kopiera.");
+      }
+    });
+  }
+
+  function renderFromRoute(){
+    const id = getRouteId();
+    const v = id ? byId[id] : null;
+    renderList(qEl ? qEl.value : "");
+    setDetail(v);
+  }
+
+  if(qEl) qEl.addEventListener("input", () => renderList(qEl.value));
+  window.addEventListener("hashchange", renderFromRoute);
+  renderFromRoute();
+</script>
+
+<script>
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+}
+(function(){
+  const saved = localStorage.getItem("theme");
+  if(saved === "dark"){ document.body.classList.add("dark"); }
+})();
+</script>
+
+</body>
+</html>
