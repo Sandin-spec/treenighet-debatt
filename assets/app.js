@@ -69,7 +69,7 @@ function setDetail(v){
     <div class="kicker">${escapeHtml((v.tags||[]).join(" · "))}</div>
 
     <div class="block logic">
-      <h3>kärna</h3>
+      <h3>Vad kärnan</h3>
       <p><strong>${escapeHtml(v.short)}</strong></p>
     </div>
 
@@ -84,7 +84,7 @@ function setDetail(v){
     </div>
 
     <div class="block notes">
-      <h3>Fråga att ställa</h3>
+      <h3>Frågan att ställa</h3>
       ${(v.expanded?.notes||[]).map(p => `<p>${escapeHtml(p)}</p>`).join("")}
     </div>
 
