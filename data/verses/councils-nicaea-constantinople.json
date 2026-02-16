@@ -1,0 +1,25 @@
+{
+  "id": "councils-nicaea-constantinople",
+  "ref": "Nicaea 325, Konstantinopel 381",
+  "short": "De avgörande treenighetsformuleringarna fastställdes vid kyrkomötena i Nicaea och Konstantinopel.",
+  "tags": [
+    "Kyrkohistoria",
+    "Koncilier",
+    "Treenighet"
+  ],
+  "expanded": {
+    "logic": [
+      "Kyrkomötena i Nicaea år 325 och Konstantinopel år 381 fastställde formuleringarna om att Sonen är av samma väsen som Fadern och att den heliga anden är fullt ut gudomlig. Dessa formuleringar använder filosofiska begrepp som väsen, substans och person, begrepp som inte finns i Bibelns egna ordval. .",
+      "Om den bibliska texten främst beskriver relationer i termer av sändning, lydnad och beroende, men koncilierna definierar relationen i ontologiska kategorier, då har språket och den logiska ramen förändrats. ."
+    ],
+    "why": [
+      "Det logiska argumentet mot konciliernas formuleringar är att Bibeln konsekvent betonar en enda Gud, Fadern, medan Sonen framställs som sänd av Gud och beroende av honom. Om ontologisk jämlikhet införs som dogm, innebär det en omtolkning av dessa relationer. .",
+      "När en lära kräver tekniska begrepp som inte finns i källtexten, kan det ses som att en senare filosofisk modell styr tolkningen snarare än textens egna kategorier. ."
+    ],
+    "notes": [
+      "De som ser detta som ett avfall menar att koncilierna institutionaliserade en teologisk modell som formulerades för att lösa filosofiska och kyrkopolitiska konflikter snarare än att bara återge bibliskt språk. .",
+      "Skillnaden kan beskrivas som funktionell kontra ontologisk: Bibeln beskriver vad Fadern, Sonen och Anden gör, medan koncilierna definierar vad de är i metafysisk mening. .",
+      "Förespråkare för treenigheten menar däremot att koncilierna inte skapade en ny lära utan klargjorde det som redan fanns implicit i Skriften. Kärnfrågan blir därför: är detta en legitim utveckling eller en förändring av den ursprungliga läran? ."
+    ]
+  }
+}
