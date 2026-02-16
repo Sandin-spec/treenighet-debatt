@@ -1,5 +1,20 @@
 [
   {
+    "id": "councils-nicaea-constantinople",
+    "ref": "Nicaea 325, Konstantinopel 381",
+    "short": "Kyrkomötena i Nicaea år 325 och Konstantinopel år 381 fastställde formuleringarna om att Sonen är av samma väsen som Fadern.",
+    "tags": [
+      "GT",
+      "plural",
+      "låt oss"
+    ],
+    "relatedIds": [
+      "deut-6-4",
+      "john-10-30",
+      "matt-28-19"
+    ]
+  },
+  {
     "id": "gen-1-26",
     "ref": "1 Mos 1:26",
     "short": "Pluralformen blir tre personer först när man lägger in ett ontologiskt schema som versen inte anger.",
