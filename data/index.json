@@ -224,6 +224,21 @@
       "john-20-28"
     ]
   },
+    {
+    "id": "john-14-10",
+    "ref": "Joh 14:10",
+    "short": "Jesus inte säger att han är samma person som Fadern, utan att Fadern verkar genom honom.",
+    "tags": [
+      "Evangelier",
+      "uppenbarelse",
+      "Fadern"
+    ],
+    "relatedIds": [
+      "john-1-1",
+      "john-17-3",
+      "john-20-28"
+    ]
+  },
   {
     "id": "john-17-3",
     "ref": "Joh 17:3",
