@@ -1,4 +1,19 @@
 [
+   {
+    "id": "john-3-18",
+    "ref": "Nicaea 325, Konstantinopel 381",
+    "short": "Johannes 3:18 i P66 och P75 betonar den unike Sonen utan utvidgad ontologisk formulering.",
+    "tags": [
+      "GT",
+      "plural",
+      "låt oss"
+    ],
+    "relatedIds": [
+      "deut-6-4",
+      "john-10-30",
+      "matt-28-19"
+    ]
+  },
   {
     "id": "councils-nicaea-constantinople",
     "ref": "Nicaea 325, Konstantinopel 381",
