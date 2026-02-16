@@ -1,0 +1,34 @@
+{
+  "id": "john-5-22",
+  "ref": "Joh 5:22",
+  "short": "Given auktoritet blir ofarlig först när man skiljer ‘roll’ från ‘väsen’ via en extern modell.",
+  "tags": [
+    "Evangelier",
+    "dom",
+    "auktoritet"
+  ],
+  "expanded": {
+    "logic": [
+      "Fadern ger domen till Sonen.",
+      "Treenighetsläsning måste säga att givandet inte innebär rangskillnad, bara funktionsordning.",
+      "Men texten beskriver delegation och mottagande. Att neutralisera underordning kräver natur-person-distinktion som versen inte uttrycker.",
+      "Läs versen i sitt sammanhang. Den säger något konkret om Fadern, Sonen eller Anden, men formulerar inte en treenig gudom."
+    ],
+    "why": [
+      "När textens relationella språk måste avväpnas för att skydda en ontologi, då är ontologin pålagd.",
+      "Versen används ofta i treenighetsdebatten. Här hjälper den oss att hålla oss till det som faktiskt står i texten, inte senare tolkningar.",
+      "Den här versen hjälper oss att bygga en helhetsbild där bibeltexter tolkas med bibeltexter (jämför gärna parallellställen)."
+    ],
+    "notes": [
+      "Fråga: Var säger versen att ‘given’ auktoritet inte innebär verklig underordning?",
+      "Tumregel: om tolkningen kräver ord som inte finns i texten (t.ex. ”tre personer i ett väsen”), kontrollera om sammanhanget verkligen stödjer det.",
+      "Om du vill göra sidan ännu tydligare kan du länka till ett par parallellställen i samma tema (monoteism, Sonens underordning, Andens funktion).",
+      "För treenighetsfrågor är det extra viktigt att skilja på: vad texten säger, och vad en senare teologisk modell vill att texten ska säga."
+    ]
+  },
+  "relatedIds": [
+    "acts-2-36",
+    "phil-2-6-11",
+    "1cor-15-28"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "gen-11-7",
+  "ref": "1 Mos 11:7",
+  "short": "Plural utan definierat personschema.",
+  "tags": [
+    "GT",
+    "plural",
+    "Babel"
+  ],
+  "expanded": {
+    "logic": [
+      "Texten: 1 Mos 11:7.",
+      "Utsagan används ofta för att stödja en trinitarisk slutsats.",
+      "Men versen definierar inte ett ontologiskt schema med väsen och personer.",
+      "Läs versen i sitt sammanhang. Den säger något konkret om Fadern, Sonen eller Anden, men formulerar inte en treenig gudom."
+    ],
+    "why": [
+      "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
+      "Det steget står inte i själva versen.",
+      "Versen används ofta i treenighetsdebatten. Här hjälper den oss att hålla oss till det som faktiskt står i texten, inte senare tolkningar."
+    ],
+    "notes": [
+      "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?",
+      "Tumregel: om tolkningen kräver ord som inte finns i texten (t.ex. ”tre personer i ett väsen”), kontrollera om sammanhanget verkligen stödjer det.",
+      "Om du vill göra sidan ännu tydligare kan du länka till ett par parallellställen i samma tema (monoteism, Sonens underordning, Andens funktion).",
+      "För treenighetsfrågor är det extra viktigt att skilja på: vad texten säger, och vad en senare teologisk modell vill att texten ska säga."
+    ]
+  }
+}
