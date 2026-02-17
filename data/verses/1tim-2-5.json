@@ -1,32 +1,34 @@
 {
-  "id": "1john-5-7-8",
-  "ref": "1 Joh 5:7-8",
-  "short": "Comma Johanneum är textkritiskt sekundärt och den ursprungliga texten uttrycker inte en treenig ontologi.",
+  "id": "1tim-2-5",
+  "ref": "1 Tim 2:5",
+  "short": "En Gud och en medlare gör skillnad mellan Gud och Kristus.",
   "tags": [
-    "Johannesbrev",
-    "textkritik",
-    "treenighet"
+    "Paulus",
+    "medlare",
+    "en Gud"
   ],
   "expanded": {
     "logic": [
-      "Texten: 1 Joh 5:7-8.",
-      "Den längre formuleringen om Fadern, Ordet och den helige Ande finns inte i de äldsta grekiska handskrifterna.",
-      "Den ursprungliga texten talar om tre vittnen: Anden, vattnet och blodet.",
-      "Versen argumenterar for samstammigt vittnesbord om Jesus som Guds Son.",
-      "Texten formulerar inte ett ontologiskt schema om tre personer i ett vasen."
+      "Versen säger: en Gud och en medlare mellan Gud och människor, människan Kristus Jesus.",
+      "Texten gör en tydlig distinktion mellan Gud och medlaren.",
+      "En medlare står mellan två parter och är inte identisk med någon av dem.",
+      "Versen uttrycker ingen två-natur-lösning eller ontologisk förklaring.",
+      "Poängen i sammanhanget är frälsningens ordning, inte en definition av Guds väsen."
     ],
     "why": [
-      "Den explicita treenighetsformuleringen ar textkritiskt sekundar.",
-      "Om en dogm vilar pa en senare variant maste det markeras arligt.",
-      "Versen hjalper oss att skilja mellan vad texten faktiskt sager och senare teologiska formuleringar."
+      "Distinktionen i texten är direkt och språkligt tydlig.",
+      "Om en teologisk modell måste omtolka den som roll snarare än faktisk distinktion bör det markeras.",
+      "Versen hjälper oss att hålla oss till vad texten faktiskt säger."
     ],
     "notes": [
-      "Fraga: Var i den ursprungliga texten uttrycks en ontologisk treenighet?",
-      "Tumregel: Om tolkningen kraver begrepp som inte finns i versen bor sammanhanget kontrolleras noggrant.",
-      "Moderna bibelutgavor markerar eller utelamnar senare handskriftsvarianter.",
-      "For treenighetsfragor ar det viktigt att skilja mellan textens innehall och senare dogmatisk utveckling."
+      "Fråga: Var i versen står att distinktionen bara gäller natur och inte identitet?",
+      "Tumregel: Om tolkningen kräver begrepp som inte finns i texten bör sammanhanget undersökas noggrant.",
+      "Jämför gärna parallellställen om Guds enhet och Kristi roll."
     ]
   },
   "relatedIds": [
-    "1tim-2-5",
-    "john-10-30",
+    "1cor-15-28",
+    "john-20-17",
+    "acts-2-36"
+  ]
+}
