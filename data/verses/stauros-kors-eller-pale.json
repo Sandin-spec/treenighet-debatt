@@ -2,37 +2,41 @@
   "id": "stauros-kors-eller-pale",
   "ref": "NT: σταυρός (stauros) i korsfästelse-texterna",
   "short": "De äldsta grekiska texterna använder ordet stauros utan att specificera formen. Det kan ha varit en påle eller ett kors med tvärbjälke. Oavsett form ger Bibeln inget stöd för att använda det som symbol i tillbedjan.",
-  "tags": [
+ "tags": [
     "grekiska",
     "stauros",
     "spikar",
     "korsfästelse",
     "textkritik",
-    "arkeologi"
+    "tillbedjan",
+    "symboler"
   ],
   "expanded": {
     "logic": [
-      "Nya testamentet använder ordet σταυρός (stauros) om avrättningsredskapet, utan att beskriva dess geometriska form.",
+      "Nya testamentet använder ordet σταυρός (stauros) om avrättningsredskapet utan att beskriva dess exakta form.",
       "Johannes 20:25 använder pluralformen ἥλων (av ἥλος), vilket betyder spikar i plural.",
       "Pluralformen visar att mer än en spik användes i handområdet.",
-      "Bibeln specificerar inte hur många spikar som användes totalt.",
-      "Bibeln specificerar inte hur många spikar som användes i fötterna.",
-      "Fyra spikar (två i händerna och två i fötterna) är fullt möjligt och förenligt med texten, men inte uttryckligen angivet."
+      "Bibeln specificerar inte hur många spikar som användes totalt eller i fötterna.",
+      "Fyra spikar (två i händerna och två i fötterna) är möjligt och förenligt med texten, men inte uttryckligen angivet.",
+      "Nya testamentet ger inget exempel på att de första kristna använde korset som symbol i sin tillbedjan.",
+      "Bibeln innehåller uttryckliga förbud mot att göra religiösa bilder för tillbedjan."
     ],
     "why": [
-      "Textkritik prioriterar vad de äldsta grekiska manuskripten faktiskt säger.",
+      "Textkritik prioriterar vad de äldsta grekiska manuskripten faktiskt säger, inte senare tradition.",
       "Pluralformen ἥλων kan inte naturligt betyda en enda spik genom båda händerna.",
-      "Avsaknaden av numerisk specificering gör att exakta rekonstruktioner förblir hypotetiska."
+      "Avsaknaden av instruktion eller exempel på symbolbruk i apostolisk tid är betydelsefull.",
+      "Gamla testamentet förbjuder religiösa bilder i tillbedjan, vilket påverkar hur man ser på användning av religiösa symboler."
     ],
     "notes": [
       "Nyckelord: σταυρός (stauros), σταυρόω (stauroō), ἥλος (hēlos), ξύλον (xylon).",
       "Joh 20:25 är den enda versen som explicit nämner spikar.",
       "Luk 24:39 nämner händer och fötter men inte spikar.",
-      "Apg 5:30 och Gal 3:13 använder ordet ξύλον (trä)."
+      "Ingen vers i Nya testamentet uppmanar kristna att bära, resa eller vörda ett kors.",
+      "De första kristnas predikan fokuserade på budskapet om korset, inte på ett föremål."
     ]
   },
   "deepDive": {
-    "title": "Spikarna, stauros och möjligheten med fyra spikar",
+    "title": "Stauros, spikarna och frågan om korssymbol i tillbedjan",
     "biblicalText": [
       {
         "ref": "Joh 20:25",
@@ -46,47 +50,55 @@
       },
       {
         "ref": "Apg 5:30",
-        "greek": "ὃν ὑμεῖς διεχειρίσασθε κρεμάσαντες ἐπὶ ξύλου",
+        "greek": "κρεμάσαντες ἐπὶ ξύλου",
         "point": "Xylon (trä) används som alternativ benämning."
       }
-    ],
-    "manuscriptEvidence": [
-      "Tidiga papyri (till exempel P66 och P75) bevarar bruket av stauros och stauroō i passionsberättelserna.",
-      "Codex Vaticanus och Codex Sinaiticus (300-talet) innehåller samma ordval.",
-      "Ingen av de äldsta grekiska handskrifterna specificerar konstruktionens form."
     ],
     "spikeAnalysis": [
       "Pluralformen i Joh 20:25 talar starkt för minst två spikar i handområdet.",
       "Texten säger inte hur många spikar som användes i fötterna.",
       "Fyra spikar (en i varje hand och en i varje fot) är möjligt och förenligt med texten.",
-      "Tre spikar (två i händerna och en genom båda fötterna) är också möjligt.",
-      "Bibeln anger inte totalt antal spikar."
+      "Tre spikar är också möjligt, men inte uttryckligen angivet."
     ],
-    "archaeology": [
-      "1968 hittades skelettet av Yehohanan i Jerusalem, med en spik genom hälbenet.",
-      "Fyndet visar att romarna använde riktiga järnspikar i fötterna.",
-      "Fyndet avgör inte exakt hur Jesu avrättningsredskap såg ut."
+    "earlyChristians": [
+      "Nya testamentet innehåller inga exempel på att apostlarna använde korset som religiös symbol.",
+      "Predikan i Apostlagärningarna fokuserar på Jesu död och uppståndelse, inte på att vörda ett föremål.",
+      "Det finns ingen befallning i Nya testamentet att tillverka eller använda ett kors i tillbedjan."
+    ],
+    "biblicalProhibition": [
+      {
+        "ref": "2 Mos 20:4-5",
+        "point": "Förbud mot att göra och tillbe bilder eller avbilder."
+      },
+      {
+        "ref": "5 Mos 4:15-16",
+        "point": "Ingen gestalt visades, därför skulle ingen bild göras för religiöst bruk."
+      },
+      {
+        "ref": "Joh 4:24",
+        "point": "Tillbedjan ska ske i ande och sanning, inte genom materiella symboler."
+      }
     ],
     "conclusion": [
-      "Bibeln säger tydligt att flera spikar användes i händerna.",
-      "Bibeln anger inte hur många spikar som användes totalt.",
-      "Fyra spikar är en rimlig möjlighet men inte uttryckligen fastslagen.",
-      "Formen på stauros specificeras inte i de äldsta texterna."
+      "De äldsta grekiska texterna anger att Jesus fästes med flera spikar, men specificerar inte konstruktionens form.",
+      "Fyra spikar är möjligt men inte uttryckligen fastslaget.",
+      "Nya testamentet ger inget stöd för användning av korset som religiös symbol.",
+      "Bibeln innehåller tydliga varningar mot religiösa bilder i tillbedjan."
     ]
   },
   "references": [
     {
-      "title": "Joh 20:25 – grekisk text (NA/UBS tradition)",
+      "title": "Joh 20:25 – grekisk interlinear",
       "url": "https://biblehub.com/interlinear/john/20-25.htm"
     },
     {
-      "title": "Arkeologiskt fynd: Yehohanan (korsfäst man från 1:a århundradet)",
-      "url": "https://en.wikipedia.org/wiki/Crucifixion#Archaeological_evidence"
+      "title": "2 Mosebok 20:4-5 – Bildförbudet",
+      "url": "https://biblehub.com/exodus/20-4.htm"
     }
   ],
   "relatedIds": [
     "stauros-kors-eller-pale",
-    "luke-23-34",
-    "1cor-1-18"
+    "1cor-1-18",
+    "acts-5-30"
   ]
 }
