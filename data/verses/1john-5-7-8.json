@@ -1,7 +1,7 @@
 {
   "id": "1john-5-7-8",
   "ref": "1 Joh 5:7-8",
-  "short": "Comma Johanneum är textkritiskt sekundärt och saknar stöd i de äldsta grekiska handskrifterna.",
+  "short": "Comma Johanneum saknas i de äldsta grekiska handskrifterna och betraktas som ett senare tillägg.",
   "tags": [
     "Johannesbrev",
     "textkritik",
@@ -9,43 +9,48 @@
   ],
   "expanded": {
     "logic": [
-      "Den längre formuleringen om Fadern, Ordet och den helige Ande finns inte i de äldsta grekiska manuskripten.",
-      "Den ursprungliga texten nämner tre vittnen: Anden, vattnet och blodet.",
-      "Johannes syfte i sammanhanget är att visa samstämmigt vittnesbörd om Jesus som Guds Son.",
-      "Texten diskuterar vittnesbörd, inte Guds inre ontologiska struktur.",
-      "Den explicita treenighetsformuleringen betraktas därför som ett senare texttillägg."
+      "Den längre formuleringen om Fadern, Ordet och den helige Ande saknas i de äldsta grekiska manuskripten.",
+      "Den finns inte i Codex Sinaiticus (300-tal), Codex Vaticanus (300-tal) eller Codex Alexandrinus (400-tal).",
+      "Den ursprungliga grekiska texten nämner endast tre vittnen: Anden, vattnet och blodet.",
+      "Johannes argumenterar för samstämmigt vittnesbörd om Jesus som Guds Son.",
+      "Texten definierar inte en ontologisk treenighetslära."
     ],
     "why": [
-      "Den starkaste treenighetsformuleringen i denna vers saknar tidigt handskriftsstöd.",
-      "Teologiska slutsatser bör inte bygga på textvarianter som inte finns i de äldsta källorna.",
-      "Versen hjälper oss att skilja mellan den ursprungliga texten och senare dogmatisk utveckling."
+      "Den explicita treenighetsformuleringen saknar tidigt handskriftsstöd.",
+      "Textkritisk metod prioriterar äldre och bredare manuskriptstöd.",
+      "Dogmatiska slutsatser bör inte vila på sena textvarianter."
     ],
     "notes": [
       "Fråga: Var i den ursprungliga grekiska texten uttrycks en ontologisk treenighet?",
-      "Moderna kritiska bibelutgåvor markerar eller utelämnar senare handskriftsvarianter.",
-      "Vid treenighetsfrågor är det viktigt att skilja mellan vad texten faktiskt säger och hur den senare har tolkats teologiskt."
+      "De äldsta grekiska manuskripten hoppar direkt från 'tre som vittnar' till 'Anden, vattnet och blodet'.",
+      "Formuleringen förekommer först i vissa latinska manuskript och i senare grekiska handskrifter.",
+      "Moderna kritiska bibelutgåvor markerar eller utelämnar denna variant."
     ]
   },
   "deepDive": {
-    "title": "Djupdyk: Comma Johanneum (1 Johannes 5:7-8)",
-    "summary": [
-      "I moderna biblar lyder texten kort: tre vittnen nämns, Anden, vattnet och blodet.",
-      "I äldre biblar som King James Version finns en längre formulering: Fadern, Ordet och den helige Ande, och dessa tre är ett.",
-      "Den längre frasen kallas Comma Johanneum och betraktas som ett senare tillägg."
+    "title": "Textkritiskt underlag för Comma Johanneum",
+    "manuscriptEvidence": [
+      "Saknas i Codex Sinaiticus (4:e århundradet).",
+      "Saknas i Codex Vaticanus (4:e århundradet).",
+      "Saknas i Codex Alexandrinus (5:e århundradet).",
+      "Förekommer i vissa latinska manuskript från cirka 400–600-talet.",
+      "Infördes i grekisk tryckt text genom Erasmus tredje upplaga (1522) efter ett sent manuskript, ofta kallat Codex Montfortianus."
     ],
-    "evidence": [
-      "Den längre formuleringen saknas i de äldsta grekiska manuskripten, såsom Codex Sinaiticus och Codex Vaticanus.",
-      "Den citeras inte av de tidiga kyrkofäderna under treenighetsdebatterna på 300-talet.",
-      "Den dyker först upp i vissa latinska manuskript omkring 400–600-talet, troligen som en marginalanteckning som kopierades in i texten.",
-      "Erasmus inkluderade den först i sin tredje upplaga efter att ett sent grekiskt manuskript presenterats.",
-      "Moderna bibelutgåvor utelämnar därför frasen eller markerar den som en senare variant."
+    "historicalNote": [
+      "Under 300-talets treenighetsdebatter citeras inte Comma Johanneum av kyrkofäder som Athanasius eller Augustinus.",
+      "Detta talar starkt för att formuleringen inte fanns i den grekiska texten vid den tiden."
     ],
     "conclusion": [
-      "Comma Johanneum är ett erkänt textkritiskt tillägg.",
-      "Det betyder inte att treenighetsläran automatiskt är falsk, men Bibeln uttrycker inte dogmen så explicit i den ursprungliga texten.",
-      "Johannes huvudtema i sammanhanget är vittnesbördet om Jesus som Guds Son, inte en ontologisk definition av Gud."
+      "Comma Johanneum betraktas av modern textkritik som ett senare tillägg.",
+      "Den ursprungliga texten i 1 Joh 5:7-8 fokuserar på vittnesbördet om Jesus, inte en ontologisk treenighetsdefinition."
     ]
   },
+  "references": [
+    {
+      "title": "Johannine Comma - textual history overview",
+      "url": "https://en.wikipedia.org/wiki/Johannine_Comma"
+    }
+  ],
   "relatedIds": [
     "1tim-2-5",
     "john-10-30",
