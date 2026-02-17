@@ -4,27 +4,31 @@
   "short": "Comma Johanneum är textkritiskt sekundärt.",
   "tags": [
     "Johannesbrev",
-    "textkritik"
+    "textkritik",
+    "treenighet"
   ],
   "expanded": {
     "logic": [
-      "Texten: 1 Joh 5:7-8.",
-      "Utsagan används ofta för att stödja en trinitarisk slutsats.",
-      "Men den längre formuleringen ('Fadern, Ordet och den helige Ande, och dessa tre är ett') finns inte i de äldsta grekiska handskrifterna och betraktas som ett senare tillägg.",
+      "Den längre formuleringen om Fadern, Ordet och den helige Ande finns inte i de äldsta grekiska handskrifterna.",
       "Den ursprungliga texten talar om tre vittnen: Anden, vattnet och blodet.",
-      "Versen definierar inte ett ontologiskt schema med väsen och personer.",
-      "Läs versen i sitt sammanhang. Johannes argumenterar för vittnesbördet om Jesus som Guds Son, inte för en systematisk treenighetslära."
+      "Johannes syfte är att visa samstämmigt vittnesbörd om Jesus som Guds Son.",
+      "Versen definierar inte ett ontologiskt schema om tre personer i ett väsen.",
+      "Den explicita treenighetsformuleringen är textkritiskt sekundär."
+    ],
+    "why": [
+      "Den starkaste treenighetsformuleringen i versen saknar tidigt handskriftsstöd.",
+      "Dogm bör inte byggas på sena textvarianter.",
+      "Texten hjälper oss att skilja mellan ursprunglig formulering och senare teologisk utveckling."
+    ],
+    "notes": [
+      "Fråga: Var i den ursprungliga texten uttrycks en ontologisk treenighet?",
+      "Moderna bibelutgåvor markerar eller utelämnar senare handskriftsvarianter.",
+      "För treenighetsfrågor är det viktigt att skilja mellan textens innehåll och senare dogmatisk formulering."
     ]
   },
-  "why": [
-    "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
-    "Det steget står inte i själva versen.",
-    "Versen används ofta i treenighetsdebatten. Här hjälper den oss att hålla oss till det som faktiskt står i texten, inte senare tolkningar."
-  ],
-  "notes": [
-    "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?",
-    "Tumregel: om tolkningen kräver ord som inte finns i texten (t.ex. 'tre personer i ett väsen'), kontrollera om sammanhanget verkligen stödjer det.",
-    "Vissa formuleringar i äldre biblar kan bygga på senare tillägg i handskrifter. Moderna utgåvor markerar eller utelämnar sådana varianter.",
-    "För treenighetsfrågor är det extra viktigt att skilja på: vad texten säger, och vad en senare teologisk modell vill att texten ska säga."
+  "relatedIds": [
+    "1tim-2-5",
+    "john-10-30",
+    "1tim-3-16"
   ]
 }
