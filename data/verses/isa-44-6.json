@@ -1,30 +1,45 @@
 {
   "id": "isa-44-6",
   "ref": "Jes 44:6",
-  "short": "Förste och siste, singular självidentifikation.",
+  "short": "Förste och siste. Singular självidentifikation. Stark monoteistisk deklaration.",
   "tags": [
     "GT",
     "titel",
-    "monoteism"
+    "monoteism",
+    "treenighetsdebatt"
   ],
+  "text_innebord": "Så säger Herren, Israels konung, och hans återlösare, Herren Sebaot: Jag är den förste och jag är den siste, och förutom mig finns ingen Gud.",
   "expanded": {
+    "context": [
+      "Jesaja 40–48 betonar Guds unika suveränitet i kontrast till avgudar.",
+      "Kapitel 44 argumenterar mot avgudadyrkan och visar att Israels Gud ensam är skapare och frälsare.",
+      "Uttrycket 'den förste och den siste' markerar evighet, exklusivitet och absolut gudomlig identitet."
+    ],
     "logic": [
       "Texten: Jes 44:6.",
-      "Utsagan används ofta för att stödja en trinitarisk slutsats.",
-      "Men versen definierar inte ett ontologiskt schema med väsen och personer.",
-      "Läs versen i sitt sammanhang. Den säger något konkret om Fadern, Sonen eller Anden, men formulerar inte en treenig gudom.",
+      "Gud talar i första person singular: 'Jag är den förste och den siste'.",
+      "'Förutom mig finns ingen Gud' är en explicit monoteistisk deklaration.",
+      "Versen definierar inte ett ontologiskt schema med väsen och personer.",
+      "Den beskriver Guds identitet och exklusivitet, inte en intern struktur inom Gudomen.",
       "Bibeln återkommer ständigt till att Gud är en, unik och utan jämlike. Det är grundtonen i både GT och NT."
     ],
-    "why": [
-      "Treenighetsläsning behöver ofta ett extra tolkningssteg: från relation eller titel till ontologi.",
-      "Det steget står inte i själva versen.",
-      "Versen används ofta i treenighetsdebatten. Här hjälper den oss att hålla oss till det som faktiskt står i texten, inte senare tolkningar."
+    "how_used_for_trinity": [
+      "Treenighetsläsare kopplar titeln 'den förste och den siste' till Uppenbarelseboken där samma titel används om Jesus.",
+      "Jesus kallas även återlösare i NT, vilket kopplas till Jes 44:6 där Herren är återlösaren.",
+      "Argumentet blir att om Jesus bär Guds unika titlar och funktioner, delar han Guds identitet."
+    ],
+    "why_debated": [
+      "Treenighetsläsning kräver ett extra tolkningssteg: från titel och funktion till ontologi.",
+      "Det ontologiska steget står inte uttryckligen i själva versen.",
+      "Versen kan naturligt läsas som två titlar för samma Gud, inte som två personer.",
+      "Strikt läst uttrycker versen singular självidentifikation."
     ],
     "notes": [
       "Debattfråga: Var i versen står ontologin uttryckt, och inte bara relation, funktion eller titel?",
-      "Tumregel: om tolkningen kräver ord som inte finns i texten (t.ex. ”tre personer i ett väsen”), kontrollera om sammanhanget verkligen stödjer det.",
-      "Det här ligger i linje med den judiska monoteismen som Jesus själv bekräftade (t.ex. 5 Mos 6:4).",
-      "För treenighetsfrågor är det extra viktigt att skilja på: vad texten säger, och vad en senare teologisk modell vill att texten ska säga."
-    ]
+      "Tumregel: Om tolkningen kräver begrepp som inte finns i texten, kontrollera om sammanhanget verkligen stödjer det.",
+      "Ligger i linje med den judiska monoteismen som Jesus själv bekräftade (5 Mos 6:4).",
+      "Viktigt att skilja mellan: vad texten säger, och vad en senare teologisk modell systematiserar."
+    ],
+    "summary": "Jes 44:6 är en stark monoteistisk utsaga om Guds unikhet, evighet och exklusivitet. Den används i treenighetsdebatten eftersom dess titlar senare appliceras på Jesus i NT. Själva versen formulerar dock inte en treenig ontologi, utan betonar Guds enhet och singulara självidentifikation."
   }
 }
