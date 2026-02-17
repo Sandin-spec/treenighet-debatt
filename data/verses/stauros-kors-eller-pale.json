@@ -1,0 +1,110 @@
+{
+  "id": "stauros-kors-eller-pale",
+  "ref": "NT: σταυρός (stauros) i korsfästelse-texterna",
+  "short": "De äldsta grekiska texterna använder ordet stauros utan att specificera formen. Det kan ha varit en påle eller ett kors med tvärbjälke. Oavsett form ger Bibeln inget stöd för att använda det som symbol i tillbedjan.",
+  "tags": [
+    "grekiska",
+    "stauros",
+    "korsfästelse",
+    "textkritik",
+    "tillbedjan",
+    "symboler"
+  ],
+  "expanded": {
+    "logic": [
+      "I Nya testamentets grekiska text används substantivet σταυρός (stauros) och verbet σταυρόω (stauroō) om Jesu avrättning.",
+      "Ordet stauros anger ett avrättningsredskap men specificerar inte geometrisk form (till exempel enkel påle eller konstruktion med tvärbjälke).",
+      "I centrala korsfästelseverser står stauros i de tidigaste bevarade grekiska vittnena till texten (papyri och stora kodexar), utan att en form beskrivs.",
+      "Historiskt använde romarna flera varianter av korsfästelse, vilket gör ett kors med tvärbjälke fullt möjligt och ofta bedömt som sannolikt, men NT-ordvalet ensamt avgör inte formen.",
+      "Oavsett om det var en påle eller ett kors finns ingen biblisk befallning att använda avrättningsredskapet som religiös symbol i tillbedjan."
+    ],
+    "why": [
+      "Textkritik frågar vad de tidigaste texterna faktiskt säger. De säger stauros, inte en ritning.",
+      "Att bygga en säker slutsats om exakt form enbart på ordets äldre grundbetydelse är osäkert eftersom ord kan få bredare betydelse över tid och i ny kontext.",
+      "Bibeln varnar för att använda religiösa bilder i tillbedjan och ger inget exempel på att de första kristna använde korset som tillbedjanssymbol."
+    ],
+    "notes": [
+      "Nyckelord i grekiskan: σταυρός (stauros) och σταυρόω (stauroō).",
+      "Alternativt ord i NT: ξύλον (xylon), 'trä/träd', används ibland om samma avrättningsredskap (särskilt i Apostlagärningarna och 1 Petr). Det säger fortfarande inte formen.",
+      "Praktisk slutsats: man kan vara ärlig med att det kan ha varit ett kors, samtidigt som man avvisar symbolbruk i tillbedjan om man vill vara strikt biblisk."
+    ]
+  },
+  "deepDive": {
+    "title": "Stauros: vad de äldsta texterna säger och vad de inte säger (kors eller påle)",
+    "oldestTextWhereItStands": [
+      {
+        "ref": "Joh 19:17",
+        "greek": "βαστάζων ἑαυτῷ τὸν σταυρόν",
+        "note": "Stauros används om det Jesus bar. Texten specificerar inte formen."
+      },
+      {
+        "ref": "Matt 27:40",
+        "greek": "κατάβηθι ἀπὸ τοῦ σταυροῦ",
+        "note": "Stauros används om avrättningsredskapet. Ingen form anges."
+      },
+      {
+        "ref": "Mark 15:30",
+        "greek": "κατάβηθι ἀπὸ τοῦ σταυροῦ",
+        "note": "Samma uttryck som i Matt, stauros utan formbeskrivning."
+      },
+      {
+        "ref": "Luk 23:33",
+        "greek": "ἐκεῖ ἐσταύρωσαν αὐτόν",
+        "note": "Verbet stauroō (korsfästa) används. Formen anges inte."
+      }
+    ],
+    "manuscriptEvidence": [
+      "Tidiga papyri som bevarar delar av passionsberättelserna använder stauros/stauroō där verserna finns bevarade (till exempel papyri till Johannes och Lukas).",
+      "Stora 300-talskodexar (till exempel Vaticanus och Sinaiticus) bevarar evangelierna och har stauros/stauroō i korsfästelsepassagerna.",
+      "Varken papyri eller kodexar lägger normalt till en teknisk beskrivning av formen, utan återger bara ordet stauros och verbet stauroō."
+    ],
+    "jwEvidence": [
+      "JW betonar att stauros i äldre grekiska kunde betyda en upprätt påle, och använder detta för att argumentera för en enkel påle.",
+      "JW pekar på NT-ordet xylon (trä/träd) och kopplar det till uttrycket 'hängd på ett trä' i äldre skriftspråk, som stöd för en påle.",
+      "JW menar ofta att kors som religiös symbol är senare tradition och därför inte bör läsas in i NT."
+    ],
+    "balancedAssessment": [
+      "Det är språkligt sant att stauros kan ha en grundbetydelse som påle i äldre grekiska, men det räcker inte för att bevisa formen i romersk avrättningspraxis på 30-talet.",
+      "Det är också sant att NT inte specificerar formen, vilket gör tvärbjälke möjlig. Historisk romersk praxis gör ett kors med tvärbjälke rimligt, men detta är ett historiskt argument mer än ett rent textkritiskt.",
+      "Den mest ärliga slutsatsen utifrån de äldsta texterna är: ordet stauros står där, men formen anges inte."
+    ],
+    "worshipSymbol": {
+      "claim": "Bibeln ger inget stöd för att använda avrättningsredskapet som symbol i tillbedjan.",
+      "biblicalBasis": [
+        {
+          "ref": "2 Mos 20:4",
+          "point": "Förbud mot religiösa bilder som del av tillbedjan."
+        },
+        {
+          "ref": "5 Mos 4:15-16",
+          "point": "Ingen gestalt visades, därför ingen bild i tillbedjan."
+        },
+        {
+          "ref": "Joh 4:24",
+          "point": "Tillbedjan i ande och sanning, inte via föremål."
+        }
+      ],
+      "note": "Paulus talar om 'korset' som budskap (till exempel 1 Kor 1:18), inte som ett föremål som ska användas i tillbedjan."
+    },
+    "conclusion": [
+      "De äldsta grekiska texterna säger stauros och stauroō men anger inte om det var en påle eller ett kors med tvärbjälke.",
+      "Det är ärligt att säga att det kan ha varit ett kors.",
+      "Oavsett form finns inget bibliskt mandat att använda det som symbol i tillbedjan."
+    ]
+  },
+  "references": [
+    {
+      "title": "Jehovas vittnen: artikel om 'torture stake' (stauros)",
+      "url": "https://www.jw.org/en/library/books/Insight-on-the-Scriptures/Torture-Stake/"
+    },
+    {
+      "title": "Översikt: 'Instrument of Jesus' crucifixion' (sammanställer argument och källspår)",
+      "url": "https://en.wikipedia.org/wiki/Instrument_of_Jesus%27_crucifixion"
+    }
+  ],
+  "relatedIds": [
+    "luke-23-34",
+    "mark-15-28",
+    "1cor-1-18"
+  ]
+}
