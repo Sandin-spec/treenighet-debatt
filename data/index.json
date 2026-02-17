@@ -1,5 +1,19 @@
 [
    {
+    "id": "stauros-kors-eller-pale",
+    "ref": "Joh 3:18 i Papyrus66 och P75",
+    "short": "De äldsta grekiska texterna använder ordet stauros utan att specificera formen.",
+    "tags": [
+      "GT",
+      "plural",
+      "låt oss"
+    ],
+    "relatedIds": [
+      "deut-6-4",
+      "john-10-30",
+      "matt-28-19"
+    ]
+  },   {
     "id": "john-3-18",
     "ref": "Joh 3:18 i Papyrus66 och P75",
     "short": "Johannes 3:18 i P66 och P75 betonar den unike Sonen utan utvidgad ontologisk formulering.",
